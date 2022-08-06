@@ -6,7 +6,7 @@ RUN apt-get install -y mongodb ruby-full ruby-bundler build-essential git
 RUN git clone -b monolith https://github.com/express42/reddit.git
 # RUN gem install bundler
 
-COPY mongodb.conf /etc/mongodb.conf
+COPY mongod.conf /etc/mongodb.conf
 COPY db_config /reddit/db_config
 COPY start.sh /start.sh
 COPY reddit.service /etc/systemd/system/reddit.service
