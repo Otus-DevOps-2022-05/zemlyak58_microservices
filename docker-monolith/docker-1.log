@@ -1,0 +1,6 @@
+REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
+yourname/ubuntu-tmp-file   latest    4ae222692f21   2 minutes ago   63.1MB
+nginx                      latest    b692a91e4e15   39 hours ago    142MB
+ubuntu                     18.04     8d5df41c547b   42 hours ago    63.1MB
+python                     3.8       5c4350efb04f   4 months ago    912MB
+hello-world                latest    feb5d9fea6a5   10 months ago   13.3kB
