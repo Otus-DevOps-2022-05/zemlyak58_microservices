@@ -68,5 +68,7 @@ cd src/
 # Запуск контейнеров
 docker-compose up -d
 
-Для изменения базового имя проекта используем ключ -p
+#Для изменения базового имя проекта используем ключ -p
   -p, --project-name string        Project name
+docker-compuse -p hello up -d
+
