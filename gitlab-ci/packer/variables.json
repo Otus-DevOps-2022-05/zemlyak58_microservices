@@ -1,0 +1,6 @@
+{
+  "folder_id": "b1gmcu0esncmdden02bk",
+  "image": "ubuntu-1804-lts",
+  "key_file": "/home/zemlyak/.ssh/key_packer.json",
+  "ssh_user": "ubuntu"
+}
