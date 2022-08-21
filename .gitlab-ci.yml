@@ -11,10 +11,8 @@ variables:
   DATABASE_URL: 'mongodb://mongo/user_posts'
 
 before_script:
-
   - cd reddit
   - bundle install
-
 
 build_job:
   stage: build
@@ -41,23 +39,16 @@ deploy_dev_job:
     name: dev
     url: http://dev.example.com
 
-staging:
-  stage: stage
-  when: manual
-  script:
-    - echo 'Deploy'
+branch review:
+  stage: review
+  script: echo "Deploy to $CI_ENVIRONMENT_SLUG"
   environment:
-    name: beta
-    url: http://beta.example.com
-
-production:
-  stage: production
-  when: manual
-  script:
-    - echo 'Deploy'
-  environment:
-    name: production
-    url: http://example.com
+    name: branch/$CI_COMMIT_REF_NAME
+    url: http://$CI_ENVIRONMENT_SLUG.example.com
+  only:
+    - branches
+  except:
+    - master
 
 stage:
   stage: stage
@@ -67,16 +58,8 @@ stage:
   script:
     - echo 'Deploy'
   environment:
-    nstage:
-      stage: stage
-      when: manual
-      only:
-        - /^\d+\.\d+\.\d+/
-      script:
-        - echo 'Deploy'
-      environment:
-        name: stage
-        url: https://beta.example.com
+    name: stage
+    url: https://beta.example.com
 
 production:
   stage: production
@@ -86,15 +69,6 @@ production:
   script:
     - echo 'Deploy'
   environment:
-    nstage:
-      stage: production
-      when: manual
-      only:
-        - /^\d+\.\d+\.\d+/
-      script:
-        - echo 'Deploy'
-      environment:
-        name: production
-        url: https://beta.example.com
-
+    name: production
+    url: http://example.com
 
