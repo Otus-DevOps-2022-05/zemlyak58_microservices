@@ -7,12 +7,16 @@ $ terraform apply
 <!-- Создание docker-machine -->
 docker-machine create \
   --driver generic \
-  --generic-ip-address=84.201.135.110 \
-  --generic-ssh-user yc-user \
+  <!-- --generic-ip-address=84.201.135.110 \ -->
+  --generic-ip-address=`yc compute instance list | grep gitlab-ci | awk '{print $10}'` \
+  --generic-ssh-user ubuntu \
   --generic-ssh-key ~/.ssh/appuser \
   docker-gitlab
 <!-- Подключение к Docker host'у -->
 eval $(docker-machine env gitlab-ci)
+
+<!-- Добавляем переменую для docker-compoce -->
+echo 'IP_INSTANCE='$(yc compute instance list | grep gitlab-ci | awk '{print $10}') >> .env
 
 <!-- Запуск docker контейнеров -->
 docker-compose up -d
@@ -46,7 +50,6 @@ git remote add gitlab { my-url }
 <!-- add CI/CD pipeline -->
 wget 
 https://gist.githubusercontent.com/Nklya/ab352648c32492e6e9b32440a79a5113/raw/265f383a48b980ac6efd9b4c23f2b68a6bf70ce5/.gitlab-ci.yml .gitlab-ci.yml
-
 <!-- Добавление раннера -->
 docker run  -d --name gitlab-runner --restart always -v /srv/gitlab-runner/config:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock gitlab/gitlab-runner:latest
 
@@ -65,5 +68,6 @@ $ docker exec -it gitlab-runner gitlab-runner register \
 <!-- справка по значениям ранера -->
 docker exec -it gitlab-runner gitlab-runner register --help
 
+ && rm -rf ./reddit/.git
 
 

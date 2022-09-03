@@ -7,7 +7,7 @@ resource "yandex_compute_instance" "app" {
   }
   resources {
     cores  = 2
-    memory = 4
+    memory = 8
   }
 
   boot_disk {
@@ -22,10 +22,10 @@ resource "yandex_compute_instance" "app" {
   }
 
 
-# прерываемая ВМ дешевле)
-  scheduling_policy {
-    preemptible = true
-  }
+/* # прерываемая ВМ дешевле) */
+/*   scheduling_policy { */
+/*     preemptible = true */
+/*   } */
 
   
   #Для подключения к ВМ
