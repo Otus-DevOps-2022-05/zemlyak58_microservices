@@ -12,7 +12,7 @@ docker-machine create \
   --driver generic \
   --generic-ip-address=84.201.135.110 \
   --generic-ssh-user yc-user \
-  --generic-ssh-key ~/.ssh/id_rsa \
+  --generic-ssh-key ~/.ssh/appuser \
   docker-host
 # Подключение к Docker host'у
 eval $(docker-machine env docker-host)
